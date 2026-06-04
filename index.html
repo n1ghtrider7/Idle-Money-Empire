@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Idle Money Empire</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <header id="hud">
+        <div class="hud-card">
+            <h3>Total Assets</h3>
+            <p id="total-money">$0.00</p>
+            <small id="income-sec">+$0.00 / sec</small>
+        </div>
+        <div class="hud-card">
+            <h3>Level <span id="level">1</span></h3>
+            <div class="progress-bar"><div id="xp-fill"></div></div>
+        </div>
+        <div class="hud-card">
+            <h3>Multiplier</h3>
+            <p id="global-mult">x1.00</p>
+        </div>
+        <div class="hud-card">
+            <h3>Prestige</h3>
+            <p id="tokens">Tokens: 0</p>
+            <button id="btn-prestige">Prestige ($1,000)</button>
+        </div>
+    </header>
+
+    <main class="game-container">
+        <section class="panel click-panel" id="click-area">
+            <h2>Make Money</h2>
+            <div id="combo-display">1.00x COMBO</div>
+            <button id="main-clicker">CLICK</button>
+            
+            <div class="upgrades-section">
+                <h3>Upgrades</h3>
+                <button class="buy-btn" id="upg-pen" onclick="buyUpgrade('pen', 25, 1)">Pen ($25) | +1 Pwr</button>
+                <button class="buy-btn" id="upg-calc" onclick="buyUpgrade('calc', 250, 6)">Calculator ($250) | +6 Pwr</button>
+            </div>
+        </section>
+
+        <section class="panel middle-panel">
+            <h2>Buildings</h2>
+            <div class="buildings-list">
+                <button class="buy-btn" id="bld-office" onclick="buyBuilding('office', 20, 2)">Office ($<span id="cost-office">20</span>) | +2/s</button>
+                <button class="buy-btn" id="bld-factory" onclick="buyBuilding('factory', 100, 10)">Factory ($<span id="cost-factory">100</span>) | +10/s</button>
+                <button class="buy-btn" id="bld-bank" onclick="buyBuilding('bank', 500, 50)">Bank ($<span id="cost-bank">500</span>) | +50/s</button>
+            </div>
+
+            <h2>Stock Market</h2>
+            <div class="stocks-list" id="stocks-container">
+                </div>
+        </section>
+
+        <section class="panel right-panel">
+            <h2>Casino</h2>
+            <div class="casino-section">
+                <select id="bet-amount">
+                    <option value="10">$10</option>
+                    <option value="100">$100</option>
+                    <option value="1000">$1K</option>
+                </select>
+                <button onclick="playCoinFlip()">Coin Flip (1.9x)</button>
+                <button onclick="playDice()">Roll Dice (5x)</button>
+                <p id="casino-result">Place your bets...</p>
+            </div>
+
+            <h2>Local Leaderboard</h2>
+            <ul id="leaderboard-list">
+                <li>1. 🇺🇸 CryptoKing - P:5 (150 Tokens)</li>
+                <li>2. 🇬🇧 You - P:<span id="lb-pres">0</span> (<span id="lb-tok">0</span> Tokens)</li>
+                <li>3. 🇦🇺 DiamondHands - P:0 (0 Tokens)</li>
+            </ul>
+        </section>
+    </main>
+
+    <script src="game.js"></script>
+</body>
+</html>

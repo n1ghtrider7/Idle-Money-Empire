@@ -1,0 +1,209 @@
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    user-select: none; /* Prevents text highlighting while clicking rapidly */
+}
+
+body {
+    background-color: #0f1115;
+    color: #e0e0e0;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+}
+
+/* HUD */
+#hud {
+    display: flex;
+    justify-content: space-around;
+    background: #1a1d24;
+    padding: 15px;
+    border-bottom: 2px solid #333;
+}
+
+.hud-card {
+    text-align: center;
+}
+
+.hud-card h3 {
+    font-size: 0.9rem;
+    color: #888;
+    text-transform: uppercase;
+}
+
+.hud-card p {
+    font-size: 1.5rem;
+    font-weight: bold;
+    color: #4CAF50;
+}
+
+.progress-bar {
+    width: 100px;
+    height: 10px;
+    background: #333;
+    border-radius: 5px;
+    margin-top: 5px;
+    overflow: hidden;
+}
+
+#xp-fill {
+    width: 0%;
+    height: 100%;
+    background: #2196F3;
+    transition: width 0.2s;
+}
+
+/* Layout */
+.game-container {
+    display: flex;
+    flex: 1;
+    padding: 20px;
+    gap: 20px;
+}
+
+.panel {
+    background: #1a1d24;
+    border-radius: 10px;
+    padding: 20px;
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    border: 1px solid #2a2d35;
+}
+
+h2 {
+    border-bottom: 1px solid #333;
+    padding-bottom: 10px;
+    margin-bottom: 10px;
+}
+
+/* Clicker Area */
+#main-clicker {
+    height: 150px;
+    border-radius: 15px;
+    background: linear-gradient(135deg, #4CAF50, #2E7D32);
+    border: none;
+    color: white;
+    font-size: 2rem;
+    font-weight: bold;
+    cursor: pointer;
+    box-shadow: 0 10px 20px rgba(76, 175, 80, 0.3);
+    transition: transform 0.05s;
+}
+
+#main-clicker:active {
+    transform: scale(0.95);
+}
+
+#combo-display {
+    text-align: center;
+    font-size: 1.2rem;
+    font-weight: bold;
+    color: #ffeb3b;
+    opacity: 0;
+    transition: opacity 0.2s;
+}
+
+.combo-active {
+    opacity: 1 !important;
+    animation: pulseCombo 0.5s infinite alternate;
+}
+
+/* Buttons */
+.buy-btn {
+    background: #2a2d35;
+    color: #fff;
+    border: 1px solid #444;
+    padding: 12px;
+    border-radius: 6px;
+    cursor: pointer;
+    text-align: left;
+    transition: all 0.2s;
+    width: 100%;
+    margin-bottom: 10px;
+}
+
+.buy-btn:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+}
+
+.affordable {
+    border-color: #4CAF50;
+    animation: breathGreen 2s infinite;
+}
+
+#btn-prestige.affordable {
+    background: #ffeb3b;
+    color: #000;
+    animation: breathGold 2s infinite;
+}
+
+/* Casino */
+.casino-section select, .casino-section button {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 10px;
+    background: #333;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+/* Animations */
+@keyframes breathGreen {
+    0% { box-shadow: 0 0 5px rgba(76, 175, 80, 0.2); }
+    50% { box-shadow: 0 0 15px rgba(76, 175, 80, 0.6); }
+    100% { box-shadow: 0 0 5px rgba(76, 175, 80, 0.2); }
+}
+
+@keyframes breathGold {
+    0% { box-shadow: 0 0 5px rgba(255, 235, 59, 0.2); }
+    50% { box-shadow: 0 0 20px rgba(255, 235, 59, 0.8); }
+    100% { box-shadow: 0 0 5px rgba(255, 235, 59, 0.2); }
+}
+
+@keyframes pulseCombo {
+    from { text-shadow: 0 0 5px #ffeb3b; }
+    to { text-shadow: 0 0 20px #ff9800; transform: scale(1.05); }
+}
+
+/* Floating Text */
+.floating-text {
+    position: absolute;
+    color: #4CAF50;
+    font-weight: bold;
+    pointer-events: none;
+    animation: floatUp 1s ease-out forwards;
+    z-index: 100;
+}
+
+.crit-text {
+    color: #ffeb3b;
+    font-size: 1.5rem;
+    text-shadow: 0 0 10px #ffeb3b;
+}
+
+@keyframes floatUp {
+    0% { opacity: 1; transform: translateY(0) scale(1); }
+    100% { opacity: 0; transform: translateY(-50px) scale(1.2); }
+}
+
+/* Flash Screen for Crits */
+.crit-flash {
+    position: fixed;
+    top: 0; left: 0; right: 0; bottom: 0;
+    background: rgba(255, 235, 59, 0.2);
+    pointer-events: none;
+    z-index: 999;
+    animation: flashFade 0.3s forwards;
+}
+
+@keyframes flashFade {
+    0% { opacity: 1; }
+    100% { opacity: 0; }
+}
